@@ -14,6 +14,15 @@ app.route('/')
     });
   });
 
+  app.route('/version')
+  .get((req, res) => {
+    res.status(200).json({
+      serviceName: appName,
+      status: 'OK',
+      version: 'Version 1'
+    });
+  });
+
 app.listen(appPort, () => {
   console.log(`Server listening on port ${appPort}`);
 });

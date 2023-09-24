@@ -1,10 +1,19 @@
+require('dotenv').config()
+
+const appName = process.env.APP_NAME;
+const appPort = process.env.APP_PORT;
+
 const app = require('express')();
 
 app.route('/')
   .get((req, res) => {
-    res.send('Hello World!');
+    res.status(200).json({
+      serviceName: appName,
+      status: 'OK',
+      up: Math.floor(process.uptime())
+    });
   });
 
-app.listen(3000, () => {
-  console.log('Server listening on port 3000');
+app.listen(appPort, () => {
+  console.log(`Server listening on port ${appPort}`);
 });
